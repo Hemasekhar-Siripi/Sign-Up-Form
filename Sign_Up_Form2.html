@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="Reg_Styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+          <h2>Registration Form</h2>
+        </div>
+        <form id="registrationForm">
+        <div class="form">
+           <div class="inputfield">
+              <label for="name">Full Name</label>
+              <input type="text" class="input" placeholder="Name" id="name" name="name" required>
+           </div>  
+           <div class="inputfield">
+            <label for="gender">Gender</label>
+            <div class="custom_select">
+              <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+         </div> 
+           <div class="inputfield">
+            <label for="email">Email Address</label>
+            <input type="email" class="input" placeholder="E-mail" id="email" name="email" required>
+         </div>
+           <div class="inputfield">
+              <label for="password">Password</label>
+              <input type="password" class="input" placeholder="Password" id="password" name="password" required>
+           </div>  
+          <div class="inputfield">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="input" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" required>
+           </div> 
+            
+           <div class="inputfield">
+              <label for="number">Phone Number</label>
+              <input type="tel" class="input" placeholder="Phone Number" id="number" name="number" required>
+           </div> 
+          <div class="inputfield">
+              <label for="address">Address</label>
+              <textarea class="textarea" placeholder="Address" id="address" name="address" required></textarea>
+           </div> 
+          <div class="inputfield">
+              <label for="postalCode">Postal Code</label>
+              <input type="text" class="input" placeholder="Postal Code" id="postalCode" name="postalCode" required>
+           </div> 
+          <div class="inputfield terms">
+              <label class="check">
+                <input type="checkbox" id="termsAndConditions" name="termsAndConditions" required>
+                <span class="checkmark"></span>
+              </label>
+              <p>Agreed the terms and conditions</p>
+           </div> 
+          <div class="inputfield">
+            <input type="submit" value="Register" class="button">
+          </div>
+          </div>
+        </form>
+<div id="success-message" style="display: none;">
+    <p>Login Successful!</p>
+</div>
+    </div>	
+
+<div class="bottom-left">
+    <p><h1>Hemasekhar Reddy</h1></p>
+</div>
+
+
+<script>
+    const registrationForm = document.getElementById("registrationForm");
+    const successMessage = document.getElementById("success-message");
+
+    registrationForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form field values
+        const name = registrationForm.elements.name.value;
+        const gender = registrationForm.elements.gender.value;
+        const email = registrationForm.elements.email.value;
+        const password = registrationForm.elements.password.value;
+        const confirmPassword = registrationForm.elements.confirmPassword.value;
+        const phoneNumber = registrationForm.elements.number.value; 
+        const address = registrationForm.elements.address.value;
+        const postalCode = registrationForm.elements.postalCode.value; 
+        const termsAndConditions = registrationForm.elements.termsAndConditions.checked;
+
+        // Validate the form fields
+        if (
+            !name.trim() ||
+            gender === "" ||
+            !validateEmail(email) ||
+            !password ||
+            password !== confirmPassword ||
+            !phoneNumber ||
+            !address ||
+            !postalCode ||
+            !termsAndConditions
+        ) {
+            alert("Validation failed. Please check the form.");
+        } else {
+            successMessage.style.display = "block";
+            registrationForm.reset(); // Reset the form on successful submission
+        }
+    });
+
+    // Email validation function
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+
+    
+</body>
+</html>
